@@ -261,11 +261,11 @@ module Svn2Git
     end
 
     def get_rebasebranch
-	  get_branches 
+	  get_branches
 	  @local = @local.find_all{|l| l == @options[:rebasebranch]}
 	  @remote = @remote.find_all{|r| r.include? @options[:rebasebranch]}
 
-      if @local.count > 1 
+      if @local.count > 1
         pp "To many matching branches found (#{@local})."
         exit 1
       elsif @local.count == 0
@@ -371,7 +371,7 @@ module Svn2Git
 
             @legacy_svn_branch_tracking_message_displayed = true
 
-            run_command("git checkout \"#{branch}\"")
+            run_command("git checkout -b \"#{branch}\"")
           end
         end
       end
