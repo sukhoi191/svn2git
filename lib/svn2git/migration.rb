@@ -236,14 +236,15 @@ module Svn2Git
         # Add exclude paths to the command line; some versions of git support
         # this for fetch only, later also for init.
         regex = []
-        unless rootistrunk
-          regex << "#{trunk}[/]" unless trunk.nil?
-          tags.each{|tag| regex << "#{tag}[/][^/]+[/]"} unless tags.nil? or tags.empty?
-          branches.each{|branch| regex << "#{branch}[/][^/]+[/]"} unless branches.nil? or branches.empty?
-        end
-        regex = '^(?:' + regex.join('|') + ')(?:' + exclude.join('|') + ')'
+        #unless rootistrunk
+        #  regex << "#{trunk}[/]" unless trunk.nil?
+        #  tags.each{|tag| regex << "#{tag}[/][^/]+[/]"} unless tags.nil? or tags.empty?
+        #  branches.each{|branch| regex << "#{branch}[/][^/]+[/]"} unless branches.nil? or branches.empty?
+        #end
+        regex = '^(?:' + exclude.join('|') + ')'
         cmd += "--ignore-paths='#{regex}' "
       end
+
       run_command(cmd, true, true)
 
       get_branches
